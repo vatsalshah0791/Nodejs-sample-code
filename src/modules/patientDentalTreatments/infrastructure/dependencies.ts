@@ -1,0 +1,42 @@
+'use strict'
+
+
+import {
+    db,
+    checkInsert,
+    errorHandler
+} from './shared.import'
+
+import PatientTreatmentModel from './models/Treatment.model'
+
+import CreatePatientDentalTreatmentApplication from '../application/CreatePatientDentalTreatment.application'
+import ReadPatientDentalTreatmentsConfirmedApplication from '../application/ReadPatientDentalTreatmentsConfirmed.application'
+import ReadPatientDentalTreatmentsDraftsApplication from '../application/ReadPatientDentalTreatmentsDrafts.application'
+import ToggleStatusPatientDentalTreatmentApplication from '../application/ToggleStatusPatientDentalTreatment.application'
+import ConfirmPatientDentalTreatmentApplication from '../application/ConfirmPatientDentalTreatment.application'
+import CancelPatientDentalTreatmentApplication from '../application/CancelPatientDentalTreatment.application'
+
+import CreatePatientDentalTreatmentController from './controllers/CreatePatientDentalTreatment.controller'
+import ReadPatientDentalTreatmentsConfirmedController from './controllers/ReadPatientDentalTreatmentsConfirmed.controller'
+import ReadPatientDentalTreatmentsDraftsController from './controllers/ReadPatientDentalTreatmentsDrafts.controller'
+import ToggleStatusPatientDentalTreatmentController from './controllers/ToggleStatusPatientTreatment.controller'
+import ConfirmPatientDentalTreatmentController from './controllers/ConfirmPatientDentalTreatment.controller'
+import CancelPatientDentalTreatmentController from './controllers/CancelPatientDentalTreatment.controller'
+
+
+const patientTreatmentModel = new PatientTreatmentModel(db, checkInsert)
+
+
+const createPatientDentalTreatmentApplication = new CreatePatientDentalTreatmentApplication(patientTreatmentModel)
+const readPatientDentalTreatmentsConfirmedApplication = new ReadPatientDentalTreatmentsConfirmedApplication(patientTreatmentModel)
+const readPatientDentalTreatmentsDraftsApplication = new ReadPatientDentalTreatmentsDraftsApplication(patientTreatmentModel)
+const toggleStatusPatientDentalTreatmentApplication = new ToggleStatusPatientDentalTreatmentApplication(patientTreatmentModel)
+const confirmPatientDentalTreatmentApplication = new ConfirmPatientDentalTreatmentApplication(patientTreatmentModel)
+const cancelPatientDentalTreatmentApplication = new CancelPatientDentalTreatmentApplication(patientTreatmentModel)
+
+export const createPatientDentalTreatmentController = new CreatePatientDentalTreatmentController(createPatientDentalTreatmentApplication, errorHandler)
+export const readPatientDentalTreatmentsConfirmedController = new ReadPatientDentalTreatmentsConfirmedController(readPatientDentalTreatmentsConfirmedApplication, errorHandler)
+export const readPatientDentalTreatmentsDraftsController = new ReadPatientDentalTreatmentsDraftsController(readPatientDentalTreatmentsDraftsApplication, errorHandler)
+export const toggleStatusPatientDentalTreatmentController = new ToggleStatusPatientDentalTreatmentController(toggleStatusPatientDentalTreatmentApplication, errorHandler)
+export const confirmPatientDentalTreatmentController = new ConfirmPatientDentalTreatmentController(confirmPatientDentalTreatmentApplication, errorHandler)
+export const cancelPatientDentalTreatmentController = new CancelPatientDentalTreatmentController(cancelPatientDentalTreatmentApplication, errorHandler)

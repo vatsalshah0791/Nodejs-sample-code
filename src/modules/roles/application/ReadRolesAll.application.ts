@@ -1,0 +1,29 @@
+'use strict'
+
+
+import RoleRepository from '../domain/Role.repository'
+
+import { ReadRolesResultInterface } from '../domain/interfaces/ReadRoles.interface'
+
+
+interface Result {
+    success: boolean
+    statusCode: number
+    message: string
+    data?: ReadRolesResultInterface[]
+}
+
+
+export default class ReadRolesAllApplication {
+    constructor(private readonly roleRepository: RoleRepository) {}
+    async run(): Promise<Result> {
+        const readRolesAllResult = await this.roleRepository.readRolesAll()
+        const response: Result = {
+            success: true,
+            statusCode: 200,
+            message: 'Success',
+            data: readRolesAllResult
+        }
+        return response
+    }
+}
